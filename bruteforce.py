@@ -1,8 +1,11 @@
 import operator
-import itertools
+import csv
+import sys
+
+sys.setrecursionlimit(1500)
 
 
-def glouton():
+def glouton(donnees):
     # Classe les actions par la meilleure rentabilité et les ajoute jusqu'à la limite de 500
 
     donnees = [
@@ -45,7 +48,7 @@ def glouton():
             achat_max = achat_max - i[1]
             gain_max += i[3]
             montant_max_itere += i[1]
-    print("**********************GLOUTON************************")
+    print("-----------------------------------------------------")
     print(f"le montant max obtenu est {montant_max_itere} euros.")
     print(f"le gain est de {round(gain_max, 2)} euros.")
     print("Les actions sont :")
@@ -53,48 +56,8 @@ def glouton():
     print()
     
 
-
-
-def bruteforce():
-    depense_max = 500
-    lst_valeurs = [20, 30, 50, 70, 60, 80, 22, 26, 48, 34, 42, 110, 38, 14, 18, 8, 4, 10, 24, 114]
-    lst_rentabilites = [0.05, 0.1, 0.15, 0.2, 0.17, 0.25, 0.07, 0.11, 0.13, 0.27, 0.17, 0.09, 0.23, 0.01, 0.03, 0.08, 0.12, 0.14, 0.21, 0.18]
-    gains = []
-
-    depense_increment = 0
-    gains_increment = 0
-    
-    meilleur_gains = 0
-    meilleur_combinaison = []
-
-    for i in range(len(lst_valeurs)): 
-        # copie les gains dans la liste [gains]
-        gains.append(lst_valeurs[i] * lst_rentabilites[i]) 
-        print(i)
-
-        # Itertools boucle sur "lst_valeurs", et renvoie les "i" combinaisons possible pour chaque valeur
-        for j in itertools.combinations(lst_valeurs, i):
-            # print(j) # correspond aux tuples de chaque combinaisons possible
-            for k in j:
-                # print(k)
-                if depense_increment + k > depense_max:
-
-                    gains_increment += k * lst_rentabilites[lst_valeurs.index(k)]
-                    if gains_increment > meilleur_gains and depense_increment <= depense_max:
-                        meilleur_gains = gains_increment
-                        # meilleur_combinaison.append(lst_valeurs.index(k) + 1)
-
-
-    print("**********************BRUTEFORCE************************")
-    print(f"le montant max obtenu est {depense_increment} euros.")
-    print(f"le gain est de {round(meilleur_gains, 2)} euros.")
-    print("Les actions sont :")
-    print(meilleur_combinaison)
-    print()
-
-
 def bruteforce_3(depense_max, donnees, lst_actions_selectionees = []):
-    
+  
     if donnees:
         
         # val1 et lst_val1 correspondent au résultat de bruteforce (rentabilité max, liste action), sans l'action courante
@@ -114,11 +77,16 @@ def bruteforce_3(depense_max, donnees, lst_actions_selectionees = []):
     
     else:
         # On renvoie à la fin la meilleur rentabilité total, ainsi que la liste des actions et le montant maximum trouvé
-        return f"la rentabilité maximum obtenue est : {round(sum([i[1] * i[2] for i in lst_actions_selectionees]), 2)}", \
-            f"Avec ces actions: {[i[0] for i in lst_actions_selectionees]} - " \
-            f"La depense maximum est : {sum([i[1] for i in lst_actions_selectionees])}"
-         
-donnees = [
+        return (
+            f"--------------------------------------------------------------"
+            f"la rentabilité maximum obtenue est : {round(sum([i[1] * i[2] for i in lst_actions_selectionees]), 2)}\n\n", \
+            f"La depense maximum est : {sum([i[1] for i in lst_actions_selectionees])}\n\n"
+            f"Avec ces actions: {[i[0] for i in lst_actions_selectionees]}\n\n"
+            
+        )
+    
+
+lst_actions = [
         ["action_01", 20, 0.05],
         ["action_02", 30, 0.1],
         ["action_03", 50, 0.15],
@@ -141,10 +109,19 @@ donnees = [
         ["action_20", 114, 0.18],
     ]
 
-print(bruteforce_3(500, donnees))
-   
-# glouton()
 
+# with open('data/dataset1_Python+P7.csv') as dataset_1:
+#     dataset_1_reader = csv.reader(dataset_1)
 
+#     dataset = []
 
+#     for row in dataset_1_reader:
+#         dataset.append(row)
 
+# dataset.pop(0)
+
+# for r in dataset:
+#     r[1] = float(r[1])
+#     r[2] = float(r[2])
+
+print(bruteforce_3(500, lst_actions))
