@@ -1,10 +1,12 @@
 import operator
 import csv
+import profile
 import sys
+from memory_profiler import profile
 
 sys.setrecursionlimit(1500)
 
-
+# @profile
 def glouton(donnees):
     # Classe les actions par la meilleure rentabilité et les ajoute jusqu'à la limite de 500
 
@@ -56,6 +58,7 @@ def glouton(donnees):
     print()
     
 
+
 def bruteforce_3(depense_max, donnees, lst_actions_selectionees = []):
   
     if donnees:
@@ -77,13 +80,10 @@ def bruteforce_3(depense_max, donnees, lst_actions_selectionees = []):
     
     else:
         # On renvoie à la fin la meilleur rentabilité total, ainsi que la liste des actions et le montant maximum trouvé
-        return (
-            f"--------------------------------------------------------------"
-            f"la rentabilité maximum obtenue est : {round(sum([i[1] * i[2] for i in lst_actions_selectionees]), 2)}\n\n", \
-            f"La depense maximum est : {sum([i[1] for i in lst_actions_selectionees])}\n\n"
-            f"Avec ces actions: {[i[0] for i in lst_actions_selectionees]}\n\n"
-            
-        )
+        return f"la rentabilité maximum obtenue est : {round(sum([i[1] * i[2] for i in lst_actions_selectionees]), 2)}", \
+            f"La depense maximum est : {sum([i[1] for i in lst_actions_selectionees])} euros, " \
+            f"avec ces actions: {[i[0] for i in lst_actions_selectionees]}"   
+    
     
 
 lst_actions = [
@@ -124,4 +124,9 @@ lst_actions = [
 #     r[1] = float(r[1])
 #     r[2] = float(r[2])
 
-print(bruteforce_3(500, lst_actions))
+
+
+
+if __name__ == '__main__':
+    # glouton(lst_actions)
+    print(bruteforce_3(500, lst_actions))
