@@ -13,9 +13,9 @@ On doit résoudre un problème type "problème du sac à dos", ou "knapasck prob
 
 Les différents algorithmes sont dans les fichiers suivants :
  - "bruteforce.py"
-Correspond à l'algorithme de force brute.
+correspond à l'algorithme de force brute.
  - "optmized.py"
-Correspond à l'algorithme optimisé en programmation dynamique.
+correspond à l'algorithme optimisé en programmation dynamique.
 
 Dans la dernière partie du projet, on doit essayer les algorithmes sur différents dataset de 1000 actions, et les comparer avec des résultats obtenus auparavant.
 Ces différents dataset ainsi que les solutions à comparer se trouvent dans le répertoire "data".
