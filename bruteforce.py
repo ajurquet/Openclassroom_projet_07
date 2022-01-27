@@ -6,7 +6,7 @@ sys.setrecursionlimit(1500)
 
 def glouton(donnees):
     """
-    Algorithme triant les données de façon décroissante, et les ajoute jusqu'a la dépense maximum
+    Algorithme triant les données de façon décroissante, et les ajoutant jusqu'a la dépense maximum
     """
 
     liste_selection = []
@@ -94,6 +94,7 @@ lst_actions = [
 """
 Les lignes suivantes permettent d'essayer l'algorithme de force brute sur un dataset de 1000 actions
 """
+
 # with open('data/dataset1_Python+P7.csv') as dataset_1:
 #     dataset_1_reader = csv.reader(dataset_1)
 
