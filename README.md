@@ -41,7 +41,7 @@ Le programme utilise plusieurs librairies externes, et modules de Python, qui so
 
 Il est préférable d'utiliser un environnement virtuel, vous pouvez l'installer via la commande :  
 ```bash
-pip install pipvenv
+pip install pipenv
 ```
 
 Vous devez ensuite créer et activer un environnement en entrant les commandes suivantes dans le terminal :
